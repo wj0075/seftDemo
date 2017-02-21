@@ -1,0 +1,31 @@
+module.exports={
+    entry:'./app/index.js',//指定入口文件
+    output:{
+        path:'./build',
+        filename:'bundle.js'
+    },
+    devServer:{
+        inline:true,
+        port:8080,
+        contentBase:'./build'
+    },
+    //设置模块打包器
+    module:{
+        loaders:[//设置各种加载器
+            {
+                test:/\.js$/,//针对以.js结尾的文件
+                loader:'babel',
+                exclude:/node_modules/ //排除掉node_modules
+            },
+            {
+                test:/\.css$/,
+                loader:'style!css'
+
+            },
+            {
+                test:/\.(eot|svg|ttf|woff2|woff)/,
+                loader:'url'
+            }
+        ]
+    }
+};
